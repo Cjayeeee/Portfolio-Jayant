@@ -1,0 +1,215 @@
+.cap {
+  position: relative;
+}
+.cap__pin {
+  padding-block: clamp(20px, 3vw, 40px) clamp(60px, 8vw, 120px);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.cap__intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 24px 48px;
+  align-items: end;
+  margin-top: clamp(28px, 4vw, 60px);
+}
+.cap__title {
+  font-size: clamp(56px, 9vw, 160px);
+}
+.cap__title .line-mask {
+  display: inline-block;
+  vertical-align: bottom;
+}
+.cap__title .line-mask > span {
+  display: inline-block;
+}
+.cap__serif {
+  color: var(--blue-soft);
+  font-size: 1.12em;
+  line-height: 0.8;
+  padding-right: 0.05em;
+}
+.cap__lede {
+  color: var(--muted-dark);
+  max-width: 44ch;
+  justify-self: end;
+}
+
+/* --- dope sheet --- */
+.dope {
+  --layer-w: clamp(180px, 20vw, 300px);
+  margin-top: clamp(36px, 5vw, 72px);
+  border-top: 1px solid var(--line-dark);
+}
+.dope__ruler {
+  display: grid;
+  grid-template-columns: var(--layer-w) 1fr;
+  height: 40px;
+  align-items: center;
+  border-bottom: 1px solid var(--line-dark);
+}
+.dope__ruler-label {
+  color: var(--muted-dark);
+}
+.dope__frame {
+  color: var(--paper);
+  font-variant-numeric: tabular-nums;
+}
+.dope__ticks {
+  position: relative;
+  height: 100%;
+  margin-right: 60px;
+}
+.dope__ticks span {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 10px;
+  color: var(--muted-dark);
+}
+.dope__ticks span::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 6px);
+  height: 6px;
+  width: 1px;
+  background: var(--line-dark);
+}
+.dope__body {
+  position: relative;
+}
+.dope__row {
+  display: grid;
+  grid-template-columns: var(--layer-w) 1fr;
+  align-items: center;
+  min-height: clamp(64px, 8vh, 92px);
+  border-bottom: 1px solid var(--line-dark);
+}
+.dope__layer {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-right: 16px;
+}
+.dope__group {
+  font-size: clamp(18px, 1.7vw, 26px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+.dope__note {
+  color: var(--muted-dark);
+  font-size: 10.5px;
+  text-transform: none;
+}
+.dope__track {
+  position: relative;
+  height: 100%;
+  min-height: inherit;
+  margin-right: 60px;
+}
+.dope__track::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background: var(--line-dark);
+}
+.dope__kf {
+  position: absolute;
+  left: var(--at);
+  top: 50%;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transform: translate(-4px, -50%);
+  white-space: nowrap;
+  color: var(--muted-dark);
+  transition: color 0.4s ease;
+}
+.dope__kf .kf {
+  width: 11px;
+  height: 11px;
+  background: var(--ink);
+  border: 1px solid var(--muted-dark);
+  transition: background 0.35s ease, border-color 0.35s ease, transform 0.5s var(--ease-out);
+}
+.dope__kf-label {
+  font-size: clamp(14px, 1.15vw, 18px);
+  font-weight: 500;
+}
+.dope__kf.is-hit {
+  color: var(--paper);
+}
+.dope__kf.is-hit .kf {
+  background: var(--blue-soft);
+  border-color: var(--blue-soft);
+  transform: rotate(45deg) scale(1.25);
+}
+
+.dope__playzone {
+  position: absolute;
+  top: -40px;
+  bottom: 0;
+  left: var(--layer-w);
+  right: 60px;
+  pointer-events: none;
+}
+.dope__playhead {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  background: var(--blue-soft);
+}
+.dope__playhead::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -6px;
+  width: 13px;
+  height: 16px;
+  background: var(--blue-soft);
+  clip-path: polygon(0 0, 100% 0, 100% 60%, 50% 100%, 0 60%);
+}
+
+@media (max-width: 860px) {
+  .cap__pin {
+    min-height: 0;
+  }
+  .cap__intro {
+    grid-template-columns: 1fr;
+  }
+  .cap__lede {
+    justify-self: start;
+  }
+  .dope__ruler,
+  .dope__playzone {
+    display: none;
+  }
+  .dope__row {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding-block: 20px;
+  }
+  .dope__track {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 18px;
+    margin: 0;
+    min-height: 0;
+  }
+  .dope__track::before {
+    display: none;
+  }
+  .dope__kf {
+    position: static;
+    transform: none;
+  }
+}

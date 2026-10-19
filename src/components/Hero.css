@@ -1,0 +1,197 @@
+.hero {
+  position: relative;
+  padding-top: calc(var(--nav-h) + 24px);
+  padding-bottom: 40px;
+  min-height: 100svh;
+}
+.hero__inner {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 3vw, 36px);
+}
+.hero__meta {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 16px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.hero__meta-end {
+  justify-self: end;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink);
+}
+.hero__meta-end .kf {
+  color: var(--blue);
+}
+
+/* ---------- The elastic name ---------- */
+.hero__title {
+  position: relative;
+  font-weight: inherit;
+}
+.ename {
+  --ename-size: 12vw;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-size: var(--ename-size);
+  line-height: 0.8;
+  letter-spacing: -0.04em;
+}
+.ename.is-measuring .ename__ch {
+  font-variation-settings: 'wdth' 92 !important;
+}
+.ename__line {
+  display: flex;
+  white-space: nowrap;
+  width: max-content;
+}
+.ename__line--1 {
+  align-self: flex-end;
+}
+.ename__mask {
+  display: inline-block;
+  overflow: clip;
+  padding-top: 0.06em;
+  margin-top: -0.06em;
+}
+.ename__ch {
+  display: inline-block;
+  font-variation-settings: 'wdth' 92;
+  will-change: font-variation-settings, transform;
+}
+.ename__line--1 .ename__ch {
+  color: var(--blue);
+}
+
+.ename__line--0 {
+  position: relative;
+}
+.hero__tag {
+  position: absolute;
+  left: calc(100% + 0.3em);
+  bottom: 0.08em;
+  font-size: 0.24em;
+  letter-spacing: -0.01em;
+  font-variation-settings: normal;
+  line-height: 1;
+  white-space: nowrap;
+  color: var(--ink);
+  transform-origin: left center;
+  pointer-events: none;
+}
+
+/* ---------- Lower grid ---------- */
+.hero__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: clamp(28px, 5vw, 96px);
+  align-items: start;
+  margin-top: clamp(4px, 1vw, 16px);
+}
+.hero__left {
+  padding-top: clamp(8px, 2vw, 32px);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 640px;
+}
+.hero__headline {
+  font-size: clamp(38px, 4.6vw, 76px);
+  line-height: 0.98;
+}
+.hero__headline .line {
+  padding-bottom: 0.05em;
+}
+.hero__copy {
+  font-size: clamp(16px, 1.25vw, 19px);
+  line-height: 1.55;
+  max-width: 52ch;
+  color: var(--ink-3);
+}
+.hero__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.hero__lab {
+  justify-self: end;
+  width: 100%;
+  max-width: 400px;
+}
+
+/* ---------- strengths track ---------- */
+.hero__strengths {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 10px 20px;
+  padding-top: 18px;
+}
+.hero__strengths-label {
+  color: var(--muted);
+}
+.hero__track {
+  position: relative;
+  height: 1px;
+  background: var(--line);
+}
+.hero__track-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--ink);
+  transform-origin: left center;
+}
+.hero__strengths ul {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px 22px;
+}
+.hero__strengths li {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.hero__strengths li .kf {
+  width: 7px;
+  height: 7px;
+  color: var(--blue);
+}
+
+.hero__tag--mobile {
+  display: none;
+}
+
+@media (max-width: 1100px) {
+  .hero__grid {
+    grid-template-columns: 1fr;
+  }
+  .hero__lab {
+    justify-self: start;
+  }
+}
+@media (max-width: 760px) {
+  .hero__meta {
+    grid-template-columns: 1fr auto;
+  }
+  .hero__meta-mid {
+    display: none;
+  }
+  .ename .hero__tag {
+    display: none;
+  }
+  .hero__tag--mobile {
+    position: static;
+    display: block;
+    margin-top: 10px;
+    font-size: clamp(22px, 7vw, 34px);
+  }
+  .hero__strengths ul {
+    justify-content: flex-start;
+  }
+}

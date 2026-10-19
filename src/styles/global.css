@@ -1,0 +1,357 @@
+/* ==========================================================
+   MOTION SCORE: design tokens
+   ========================================================== */
+:root {
+  --paper: #ece6da;
+  --paper-2: #e2dbcb;
+  --paper-3: #d6ceba;
+  --ink: #14120f;
+  --ink-2: #1d1a16;
+  --ink-3: #2a2621;
+  --blue: #2a35e0;
+  --blue-soft: #8e95ff; /* accent for small text on ink */
+  --muted: rgba(20, 18, 15, 0.6);
+  --muted-dark: rgba(236, 230, 218, 0.62);
+  --line: rgba(20, 18, 15, 0.16);
+  --line-dark: rgba(236, 230, 218, 0.16);
+
+  --f-display: 'Archivo Variable', 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  --f-serif: 'Story Script', 'Brush Script MT', cursive;
+  --f-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --gutter: clamp(16px, 4vw, 56px);
+  --max: 1680px;
+  --nav-h: 72px;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-inout: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: clip;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--f-display);
+  font-variation-settings: 'wdth' 100;
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+ul,
+ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+::selection {
+  background: var(--blue);
+  color: var(--paper);
+}
+
+:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+.theme-dark :focus-visible {
+  outline-color: var(--blue-soft);
+}
+
+section[tabindex='-1']:focus {
+  outline: none;
+}
+
+.sr-only {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: fixed;
+  left: 12px;
+  top: 12px;
+  z-index: 300;
+  padding: 10px 16px;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 999px;
+  font-family: var(--f-mono);
+  font-size: 12px;
+  transform: translateY(-160%);
+  transition: transform 0.3s var(--ease-out);
+}
+.skip-link:focus {
+  transform: none;
+}
+
+/* ==========================================================
+   Layout primitives
+   ========================================================== */
+.wrap {
+  width: 100%;
+  max-width: var(--max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.theme-dark {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* mono labels: the "timecode" voice of the site */
+.mono {
+  font-family: var(--f-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+.serif-i {
+  font-family: var(--f-serif);
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  text-transform: none;
+}
+
+.display {
+  font-family: var(--f-display);
+  font-weight: 800;
+  font-variation-settings: 'wdth' 100;
+  text-transform: uppercase;
+  letter-spacing: -0.035em;
+  line-height: 0.86;
+}
+
+/* Section header row: §02 / Selected Work / 00:14 */
+.section-head {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 16px;
+  padding-block: 22px;
+}
+.section-head__rule {
+  height: 1px;
+  background: currentColor;
+  opacity: 0.22;
+  transform-origin: left center;
+}
+.section-head__code {
+  opacity: 0.6;
+}
+
+/* ==========================================================
+   Buttons: pills, inspired by the reference, re-tuned
+   ========================================================== */
+.pill {
+  --pill-bg: transparent;
+  --pill-fg: currentColor;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  height: 48px;
+  padding: 0 22px 0 24px;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+  font-family: var(--f-display);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  overflow: hidden;
+  isolation: isolate;
+  white-space: nowrap;
+  transition: color 0.45s var(--ease-out), border-color 0.45s var(--ease-out);
+}
+.pill::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--ink);
+  border-radius: inherit;
+  transform: translateY(101%);
+  transition: transform 0.55s var(--ease-out);
+}
+.pill:hover::before,
+.pill:focus-visible::before {
+  transform: translateY(0);
+}
+.pill:hover,
+.pill:focus-visible {
+  color: var(--paper);
+  border-color: var(--ink);
+}
+.pill__arrow {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.45s var(--ease-out);
+}
+.pill:hover .pill__arrow {
+  transform: translateX(3px);
+}
+
+.pill--solid {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: var(--paper);
+}
+.pill--solid::before {
+  background: var(--ink);
+}
+
+.theme-dark .pill::before {
+  background: var(--paper);
+}
+.theme-dark .pill:hover,
+.theme-dark .pill:focus-visible {
+  color: var(--ink);
+  border-color: var(--paper);
+}
+
+.pill--sm {
+  height: 36px;
+  padding: 0 16px;
+  font-size: 13px;
+  gap: 8px;
+}
+
+/* underline link */
+.u-link {
+  position: relative;
+  display: inline-block;
+}
+.u-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 0.5s var(--ease-out);
+}
+.u-link:hover::after,
+.u-link:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+/* keyframe diamond glyph */
+.kf {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  background: currentColor;
+  transform: rotate(45deg);
+  flex: none;
+}
+.kf--hollow {
+  background: transparent;
+  border: 1px solid currentColor;
+}
+
+/* Grain overlay (a nod to the reference's texture) */
+.grain {
+  position: fixed;
+  inset: -50%;
+  z-index: 250;
+  pointer-events: none;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain 1.2s steps(6) infinite;
+}
+@keyframes grain {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-3%, 2%); }
+  40% { transform: translate(2%, -3%); }
+  60% { transform: translate(-2%, -1%); }
+  80% { transform: translate(3%, 3%); }
+  100% { transform: translate(0, 0); }
+}
+
+/* Generic "line mask" used by SplitText reveals */
+.line-mask {
+  overflow: clip;
+  padding-bottom: 0.04em;
+  margin-bottom: -0.04em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .grain {
+    animation: none;
+  }
+}

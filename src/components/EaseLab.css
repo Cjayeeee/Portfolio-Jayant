@@ -1,0 +1,174 @@
+.lab {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  padding: 18px 18px 16px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow: 0 30px 60px -30px rgba(20, 18, 15, 0.5);
+}
+.lab__head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+.lab__hint {
+  color: var(--muted-dark);
+}
+.lab__graph {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  max-height: 260px;
+  margin-inline: auto;
+  touch-action: none;
+}
+.lab__graph svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.lab__grid {
+  color: var(--line-dark);
+}
+.lab__frame {
+  stroke: var(--line-dark);
+  stroke-width: 1;
+}
+.lab__linear {
+  stroke: var(--line-dark);
+  stroke-dasharray: 3 3;
+}
+.lab__arm {
+  stroke: var(--muted-dark);
+  stroke-width: 1;
+}
+.lab__curve {
+  fill: none;
+  stroke: var(--blue-soft);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+.lab__end {
+  fill: var(--paper);
+}
+.lab__handle {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  margin: -13px 0 0 -13px;
+  border-radius: 50%;
+  cursor: grab;
+  touch-action: none;
+  display: grid;
+  place-items: center;
+}
+.lab__handle::after {
+  content: '';
+  width: 12px;
+  height: 12px;
+  background: var(--blue);
+  border: 2px solid var(--paper);
+  transform: rotate(45deg);
+  transition: transform 0.3s var(--ease-out);
+}
+.lab__handle:hover::after,
+.lab__handle:focus-visible::after {
+  transform: rotate(45deg) scale(1.3);
+}
+.lab__handle:active {
+  cursor: grabbing;
+}
+
+.lab__race {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.lab__lane {
+  position: relative;
+  height: 22px;
+  border-bottom: 1px solid var(--line-dark);
+}
+.lab__lane-label {
+  position: absolute;
+  right: 0;
+  bottom: 4px;
+  font-size: 10px;
+  color: var(--muted-dark);
+}
+.lab__ball {
+  position: absolute;
+  left: 0;
+  bottom: 4px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  animation: lab-move 1.6s infinite alternate;
+}
+.lab__ball--linear {
+  border: 1px solid var(--muted-dark);
+  animation-timing-function: linear;
+}
+.lab__ball--eased {
+  background: var(--blue-soft);
+  animation-timing-function: var(--lab-ease);
+}
+@keyframes lab-move {
+  from { left: 0; }
+  to { left: calc(62% - 12px); }
+}
+
+.lab__presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.lab__preset {
+  height: 28px;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line-dark);
+  font-size: 10.5px;
+  text-transform: none;
+  color: var(--muted-dark);
+  transition: border-color 0.3s, color 0.3s, background 0.3s;
+}
+.lab__preset:hover {
+  color: var(--paper);
+  border-color: var(--muted-dark);
+}
+.lab__preset.is-active {
+  background: var(--paper);
+  color: var(--ink);
+  border-color: var(--paper);
+}
+
+.lab__out {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line-dark);
+}
+.lab__code {
+  font-family: var(--f-mono);
+  font-size: 12px;
+  color: var(--paper);
+  overflow-wrap: anywhere;
+}
+.lab__copy {
+  flex: none;
+  height: 28px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: var(--blue);
+  color: var(--paper);
+  transition: background 0.3s;
+}
+.lab__copy:hover {
+  background: #3d48ff;
+}
