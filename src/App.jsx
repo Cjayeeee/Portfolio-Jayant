@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Analytics } from '@vercel/analytics/react'
 import { ScrollTrigger } from './lib/gsap'
 import { initSmoothScroll, startScroll, stopScroll } from './lib/scroll'
 import Preloader from './components/Preloader'
@@ -46,6 +47,7 @@ export default function App() {
       <Contact />
       <div className="grain" aria-hidden="true" />
       <Cursor />
+      <Analytics />
     </>
   )
 }
